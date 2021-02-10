@@ -2,18 +2,21 @@
 <div id="container">
 <% for (let i = 0; i < 9; i++) { %>
     
-    <div class = "article">
+    <div class = "article" id="<%= info.data.results[i].id %>">
         <h2><%= info.data.results[i].title %></h2>
 
          <p><%= info.data.results[i].byline %></p>
 
-        <p><% info.data.results[i].publishedDate %></p>
+        <p><%= info.data.results[i].published_date %></p>
 
         <span id="links">
             <a href= "<%= info.data.results[i].url %>" > Go to article</a>
-            <button name="read later" action="favorites" method="POST" type="input" alt="Save for later."><3</button>
+            <form action="favorites" method="POST" label="article" name="article" title="<%= info.data.results[i].title %>">
+                <button name="favorite" type="input" alt="Save for later." >❤</button>
+                </form>
         </span>
      </div>
     
 <% } %>
 </div>
+

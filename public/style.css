@@ -1,5 +1,11 @@
+* {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 body {
     width:80%;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -16,6 +22,15 @@ header {
 h1 {
     color: rgb(140,140,140);
 }
+
+button {
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+    background-color: grey;
+    color:#fccee5;
+    border: none;
+}
 .article {
     border: solid grey;
     border-radius: 25px;
@@ -28,7 +43,7 @@ h1 {
 #container {
     margin: 0 auto;
     background-color: #fccee5;
-    width:1000px;
+    width:100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
