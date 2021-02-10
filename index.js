@@ -3,6 +3,7 @@ const axios = require('axios');
 const ejsLayouts = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const dotenv = require('dotenv');
+const db = require('./models')
 
 const app = express();
 app.set('view engine', 'ejs');
