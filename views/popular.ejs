@@ -1,0 +1,19 @@
+<header><h1>Nothing but Times</h1></header>
+<div id="container">
+<% for (let i = 0; i < 9; i++) { %>
+    
+    <div class = "article">
+        <h2><%= info.data.results[i].title %></h2>
+
+         <p><%= info.data.results[i].byline %></p>
+
+        <p><% info.data.results[i].publishedDate %></p>
+
+        <span id="links">
+            <a href= "<%= info.data.results[i].url %>" > Go to article</a>
+            <button name="read later" action="favorites" method="POST" type="input" alt="Save for later."><3</button>
+        </span>
+     </div>
+    
+<% } %>
+</div>
