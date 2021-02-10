@@ -21,23 +21,19 @@ app.get('/popular', (req, res) => {
     axios.get('https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=DgfcxxYXe5dhiNKKzNoe9GM2tcxLOmeR')
     .then((info) => {
         res.render('popular', { info })
-        console.log(info.data.results[0])
     })
 })
 
-app.post('/favorites', (req, res) => {
-    res.render('favorites', { labelId: req.body.label });
-    console.log(req.body)
+app.get('/favorites', (req, res) => {
+    res.render('favorites',  {title: req.body.title}) 
+
 });
+/*
 app.post('/', (req, res) => {
     db.fav.create({
-      title: req.body.name,
-      byline: req.body.githubLink,
-      published_date: req.body.deployedLink,
-      url: req.body.description,
-      id: req.body.url,
     })
-    .then((fav) => {
+    .then((comeback) => {
+        console.log(req.body)
     //   res.render('/favorites')
     // })
     // .catch((error) => {
@@ -45,6 +41,7 @@ app.post('/', (req, res) => {
     console.log("favorite added to database")
     })
   })
+  */
 
 
 const PORT = process.env.PORT || 8000;

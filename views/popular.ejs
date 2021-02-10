@@ -11,7 +11,12 @@
 
         <span id="links">
             <a href= "<%= info.data.results[i].url %>" > Go to article</a>
-            <form action="favorites" method="POST" label="article" name="article" title="<%= info.data.results[i].title %>">
+            <form action="favorites" method="GET">
+                <input type="hidden" name="title" value="info.data.results[i].title">
+                <input type="hidden" name="byline" value="info.data.results[i].byline">
+                <input type="hidden" name="publishedDate" value="info.data.results[i].published_date">
+                <input type="hidden" name="url" value="info.data.results[i].url">
+                <input type="hidden" name="id" value="info.data.results[i].id">
                 <button name="favorite" type="input" alt="Save for later." >❤</button>
                 </form>
         </span>
