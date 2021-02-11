@@ -21,6 +21,7 @@ app.get('/popular', (req, res) => {
     axios.get('https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=DgfcxxYXe5dhiNKKzNoe9GM2tcxLOmeR')
     .then((info) => {
         res.render('popular', { info })
+        console.log(info.data.results[0].id)
     })
 })
 
@@ -28,9 +29,9 @@ app.get('/favorites', (req, res) => {
     res.render('favorites',  {            
         title: req.body.title,
         byline: req.body.byline,
-        published_date: req.body.publishedDate,
+        published_date: req.body.published_Date,
         url: req.body.url,
-        id: req.body.id}) 
+        article_id: req.body.id}) 
 
 });
 
@@ -39,22 +40,25 @@ app.get('/favorites', (req, res) => {
 //     byline: DataTypes.STRING,
 //     published_date: DataTypes.STRING,
 //     url: DataTypes.STRING,
-//     id: DataTypes.INTEGER
+//     article_id: DataTypes.INTEGER
 // }
 
 app.post('/favorites', async(req, res) => {
-
-    
     try{
         await db.favorite.create({
             title: req.body.title,
             byline: req.body.byline,
             published_date: req.body.publishedDate,
             url: req.body.url,
-            id: req.body.id
+            article_id: req.body.id
         })
         console.log(req.body);
-        res.redirect('/favorites')
+        res.render('/favorites', {
+            title: req.body.title,
+            byline: req.body.byline,
+            published_date: req.body.publishedDate,
+            url: req.body.url,
+            article_id: req.body.id});
     }catch(e) {
         console.log('* * * * * * * * * *');
         console.log(e);
