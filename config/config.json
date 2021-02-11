@@ -1,7 +1,7 @@
 {
   "development": {
 
-    "database": "nbtimes_development",
+    "database": "nbtimes",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

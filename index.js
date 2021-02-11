@@ -25,23 +25,44 @@ app.get('/popular', (req, res) => {
 })
 
 app.get('/favorites', (req, res) => {
-    res.render('favorites',  {title: req.body.title}) 
+    res.render('favorites',  {            
+        title: req.body.title,
+        byline: req.body.byline,
+        published_date: req.body.publishedDate,
+        url: req.body.url,
+        id: req.body.id}) 
 
 });
-/*
-app.post('/', (req, res) => {
-    db.fav.create({
-    })
-    .then((comeback) => {
-        console.log(req.body)
-    //   res.render('/favorites')
-    // })
-    // .catch((error) => {
-    //   res.status(400).render('main/404')
-    console.log("favorite added to database")
-    })
-  })
-  */
+
+// {
+//     title: DataTypes.STRING,
+//     byline: DataTypes.STRING,
+//     published_date: DataTypes.STRING,
+//     url: DataTypes.STRING,
+//     id: DataTypes.INTEGER
+// }
+
+app.post('/favorites', async(req, res) => {
+
+    
+    try{
+        await db.favorite.create({
+            title: req.body.title,
+            byline: req.body.byline,
+            published_date: req.body.publishedDate,
+            url: req.body.url,
+            id: req.body.id
+        })
+        console.log(req.body);
+        res.redirect('/favorites')
+    }catch(e) {
+        console.log('* * * * * * * * * *');
+        console.log(e);
+        console.log(e.message);
+        console.log('* * * * * * * * * *');
+    }
+
+})
 
 
 const PORT = process.env.PORT || 8000;
