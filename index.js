@@ -59,6 +59,7 @@ app.post('/favorites', async(req, res) => {
             published_date: req.body.publishedDate,
             url: req.body.url,
             article_id: req.body.id});
+            res.redirect('/favorites');
     }catch(e) {
         console.log('* * * * * * * * * *');
         console.log(e);
