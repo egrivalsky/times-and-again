@@ -1,4 +1,33 @@
 <header><h1>All Your Favorites</h1></header>
-<p><%= title %></p>
-<p><%= byline %></p>
-<p><%= published_date %></p>
+
+
+<% for (let i = 0; i < favoritesArray.length; i++) { %>
+   <% let favoriteArticle = favoritesArray[i]; %>
+
+   <div class = "article" id="<%= favoriteArticle.id %>">
+    <h2><%= favoriteArticle.title %></h2>
+
+     <p><%= favoriteArticle.byline %></p>
+
+    <p><%= favoriteArticle.published_date %></p>
+
+    <span id="links">
+        <a href= "<%= favoriteArticle.url %>" > Go to article</a>
+        <!-- <form action="/favorites" method="Get">
+            
+            <input type="hidden" name="title" value="<%= favoriteArticle.title %>">
+            <input type="hidden" name="byline" value="<%= favoriteArticle.byline %>">
+            <input type="hidden" name="published_date" value="<%= favoriteArticle.published_date %>">
+            <input type="hidden" name="url" value="<%= favoriteArticle.url %>"> 
+            <input type="hidden" name="articl_id" value="<%= favoriteArticle.id %>">
+            <button name="favorite" type="input" alt="remove." >REMOVE</button>
+            </form> -->
+    </span>
+ </div>
+
+<!-- <p><%= favoriteArticle.title %></p>
+<p><%= favoriteArticle.byline %></p>
+<p><%= favoriteArticle.published_date %></p>
+<p><%= favoriteArticle.url %></p>
+<p><a href ="">Remove</a></p> -->
+ <% } %>

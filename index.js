@@ -21,18 +21,24 @@ app.get('/popular', (req, res) => {
     axios.get('https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=DgfcxxYXe5dhiNKKzNoe9GM2tcxLOmeR')
     .then((info) => {
         res.render('popular', { info })
-        console.log(info.data.results[0].id)
+        console.log('data loaded via axios')
     })
 })
 
-app.get('/favorites', (req, res) => {
-    res.render('favorites',  {            
-        title: req.body.title,
-        byline: req.body.byline,
-        published_date: req.body.published_Date,
-        url: req.body.url,
-        article_id: req.body.id}) 
-
+app.get('/favorites', async(req, res) => {
+    try {
+        const favoritesArray = await db.favorite.findAll();       
+        res.render('favorites', { favoritesArray });   
+        // title: db.favorites.title,
+        // byline: db.favorites.byline,
+        // published_date: db.favorites.published_Date,
+        // url: db.favorites.url,
+        // article_id: db.favorites.article_id}) 
+    } catch(e) {
+        console.log("* * * * * * * * * * * * * * * * *");
+        console.log(e.message);
+        console.log("* * * * * * * * * * * * * * * * *");
+    }
 });
 
 // {
@@ -44,30 +50,20 @@ app.get('/favorites', (req, res) => {
 // }
 
 app.post('/favorites', async(req, res) => {
-    try{
-        await db.favorite.create({
+    try {
+         await db.favorite.create({
             title: req.body.title,
             byline: req.body.byline,
-            published_date: req.body.publishedDate,
+            published_date: req.body.published_date,
             url: req.body.url,
             article_id: req.body.id
         })
-        console.log(req.body);
-        res.render('/favorites', {
-            title: req.body.title,
-            byline: req.body.byline,
-            published_date: req.body.publishedDate,
-            url: req.body.url,
-            article_id: req.body.id});
             res.redirect('/favorites');
-    }catch(e) {
-        console.log('* * * * * * * * * *');
+    } catch(e) {
         console.log(e);
-        console.log(e.message);
-        console.log('* * * * * * * * * *');
     }
 
-})
+});
 
 
 const PORT = process.env.PORT || 8000;
